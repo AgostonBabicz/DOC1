@@ -27,6 +27,12 @@ jobs:
         run: |
           cd Spring
           ./mvnw clean install
+          mv target/*.jar runnables/backend
+      - name: Creating build artifact
+        uses : actions/upload-artifact@v3
+        with:
+          name: JAR
+          path: runnables/backend
 
   build-frontend:
     name: CI Pipeline - Frontend

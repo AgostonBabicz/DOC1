@@ -5,7 +5,7 @@ services:
     restart: always
     container_name: doc1_database
     ports:
-      - 5433:5432 # Maps external port 5433 to internal port 5432
+      - 5433:5432
     volumes:
       - db:/var/lib/postgresql/data
     environment:
