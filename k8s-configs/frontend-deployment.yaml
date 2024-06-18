@@ -20,4 +20,4 @@ spec:
         - containerPort: 3000
         env:
         - name: REACT_APP_BACKEND_URL
-          value: " http://127.0.0.1:59365"
+          value: " http://doc1-backend:31000"
