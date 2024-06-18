@@ -27,7 +27,7 @@ jobs:
         run: |
           cd Spring
           ./mvnw clean install
-          mv target/*.jar runnables/backend
+          mv target/*.jar ../runnables/backend
       - name: Creating build artifact
         uses : actions/upload-artifact@v3
         with:
