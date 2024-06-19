@@ -10,3 +10,5 @@ EXPOSE 8080
 VOLUME /assignment_volume
 COPY --from=build /app/target/DOC1_ASSIGNMENT-1.0-SNAPSHOT.jar DOC1_ASSIGNMENT-1.0-SNAPSHOT.jar
 ENTRYPOINT ["java", "-jar", "DOC1_ASSIGNMENT-1.0-SNAPSHOT.jar"]
+
+
