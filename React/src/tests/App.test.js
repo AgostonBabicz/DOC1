@@ -1,12 +1,32 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../components/App';
+import AddStory from '../components/AddStory';
+import Edit from '../components/Stories';
+
+const routes = [
+  {
+    path: '/',
+    element: <App />,
+  },
+  {
+    path: '/add',
+    element: <AddStory />,
+  },
+  {
+    path: '/stories',
+    element: <Edit />,
+  },
+];
 
 test('renders sidebar with menu items', () => {
-  render(
-      <App />
-  );
+  const router = createMemoryRouter(routes, {
+    initialEntries: ['/'],
+  });
+
+  render(<RouterProvider router={router} />);
 
   const sidebar = screen.getByRole('navigation', { name: /sidebar/i });
   expect(sidebar).toBeInTheDocument();
@@ -25,9 +45,11 @@ test('renders sidebar with menu items', () => {
 });
 
 test('renders welcome message', () => {
-  render(
-      <App />
-  );
+  const router = createMemoryRouter(routes, {
+    initialEntries: ['/'],
+  });
+
+  render(<RouterProvider router={router} />);
 
   const header = screen.getByRole('heading', { name: /welcome to via tabloid app/i });
   expect(header).toBeInTheDocument();

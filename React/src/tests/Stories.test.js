@@ -1,12 +1,32 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 import Edit from '../components/Stories';
+import App from '../components/App';
+import AddStory from '../components/AddStory';
+
+const routes = [
+  {
+    path: '/',
+    element: <App />,
+  },
+  {
+    path: '/add',
+    element: <AddStory />,
+  },
+  {
+    path: '/stories',
+    element: <Edit />,
+  },
+];
 
 test('renders sidebar with menu items', () => {
-  render(
-    <Edit />
-  );
+  const router = createMemoryRouter(routes, {
+    initialEntries: ['/stories'],
+  });
+
+  render(<RouterProvider router={router} />);
 
   const sidebar = screen.getByRole('navigation', { name: /sidebar/i });
   expect(sidebar).toBeInTheDocument();
