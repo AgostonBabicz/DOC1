@@ -1,14 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../components/App';
 
 test('renders sidebar with menu items', () => {
   render(
-    <MemoryRouter>
       <App />
-    </MemoryRouter>
   );
 
   const sidebar = screen.getByRole('navigation', { name: /sidebar/i });
@@ -29,9 +26,7 @@ test('renders sidebar with menu items', () => {
 
 test('renders welcome message', () => {
   render(
-    <MemoryRouter>
       <App />
-    </MemoryRouter>
   );
 
   const header = screen.getByRole('heading', { name: /welcome to via tabloid app/i });

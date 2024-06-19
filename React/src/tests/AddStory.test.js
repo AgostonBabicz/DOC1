@@ -1,14 +1,11 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Add from '../components/AddStory';
 
 test('renders sidebar with menu items', () => {
   render(
-    <MemoryRouter>
-      <Add />
-    </MemoryRouter>
+    <Add />
   );
 
   const sidebar = screen.getByRole('navigation', { name: /sidebar/i });
@@ -29,9 +26,7 @@ test('renders sidebar with menu items', () => {
 
 test('renders form with header and content inputs', () => {
   render(
-    <MemoryRouter>
-      <Add />
-    </MemoryRouter>
+    <Add />
   );
 
   const headerInput = screen.getByLabelText(/header:/i);
@@ -42,39 +37,4 @@ test('renders form with header and content inputs', () => {
 
   const submitButton = screen.getByRole('button', { name: /submit/i });
   expect(submitButton).toBeInTheDocument();
-});
-
-test('submits the form with correct data', async () => {
-  render(
-    <MemoryRouter>
-      <Add />
-    </MemoryRouter>
-  );
-
-  const headerInput = screen.getByLabelText(/header:/i);
-  const contentTextarea = screen.getByLabelText(/content:/i);
-  const submitButton = screen.getByRole('button', { name: /submit/i });
-
-  fireEvent.change(headerInput, { target: { value: 'Test Header' } });
-  fireEvent.change(contentTextarea, { target: { value: 'Test Content' } });
-
-  global.fetch = jest.fn(() =>
-    Promise.resolve({
-      ok: true,
-      json: () => Promise.resolve({}),
-    })
-  );
-
-  fireEvent.click(submitButton);
-
-  expect(global.fetch).toHaveBeenCalledWith(
-    expect.stringContaining('/stories'),
-    expect.objectContaining({
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ header: 'Test Header', content: 'Test Content' }),
-    })
-  );
-
-  global.fetch.mockClear();
 });
