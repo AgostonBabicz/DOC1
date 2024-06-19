@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
-import Add from './Add';
+import Add from '../components/AddStory';
 
 test('renders sidebar with menu items', () => {
   render(
