@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
-import Add from '../components/AddStory';
+import AddStory from '../components/AddStory';
 import App from '../components/App';
 import Edit from '../components/Stories';
 
@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: '/add',
-    element: <Add />,
+    element: <AddStory />,
   },
   {
     path: '/stories',

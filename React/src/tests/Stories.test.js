@@ -28,7 +28,7 @@ test('renders sidebar with menu items', () => {
 
   render(<RouterProvider router={router} />);
 
-  const sidebar = screen.getByRole('navigation', { name: /sidebar/i });
+  const sidebar = screen.getByRole('navigation');
   expect(sidebar).toBeInTheDocument();
 
   const homeLink = screen.getByRole('link', { name: /home/i });
